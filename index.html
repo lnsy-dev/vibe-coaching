@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{COMPANY_PURPOSE}}">
+  <meta name="keywords" content="{{COMPANY_NAME}}, {{COMPANY_PURPOSE}}">
+  <meta property="og:title" content="{{COMPANY_NAME}}">
+  <meta property="og:description" content="{{COMPANY_PURPOSE}}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{COMPANY_NAME}}">
+  <meta name="twitter:description" content="{{COMPANY_PURPOSE}}">
+  <title>{{PAGE_TITLE}}</title>
+  {{ANALYTICS_SCRIPT}}
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">{{COMPANY_NAME}}</div>
+        <nav class="nav">
+          <!-- Add navigation links here if needed -->
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-background">
+    </div>
+      <div class="container">
+        <div class="hero-content">
+          {{HERO_CONTENT}}
+        </div>
+      </div>
+  </section>
+
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-content">
+        {{SECTION1_CONTENT}}
+      </div>
+      <div class="feature-image">
+        <img src="/assets/images/feature-image-1.svg" alt="Aesthetic Code Mastery">
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-section reverse">
+    <div class="container">
+      <div class="feature-content">
+        {{SECTION2_CONTENT}}
+      </div>
+      <div class="feature-image">
+        <img src="/assets/images/feature-image-2.svg" alt="Retro-Futuristic Vibes">
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-section">
+    <div class="container">
+      <div class="feature-content">
+        {{SECTION3_CONTENT}}
+      </div>
+      <div class="feature-image">
+        <img src="/assets/images/feature-image-3.svg" alt="Creative Collective">
+      </div>
+    </div>
+  </section>
+
+  <section class="features-grid">
+    <div class="container">
+      <div class="grid-boxes">
+        {{FEATURES_GRID_CONTENT}}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <div class="contact-content">
+        {{CONTACT_CONTENT}}
+        {{MAILING_LIST}}
+        {{CALENDLY_BUTTON}}
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; {{YEAR}} {{COMPANY_NAME}}. All rights reserved.</p>
+      {{FOOTER_LOCATION}}
+    </div>
+  </footer>
+
+  {{COOKIE_BANNER}}
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
