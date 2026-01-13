@@ -40,13 +40,28 @@
         /* Vibe coaching - top center */
         .vibe-coaching {
             position: fixed;
-            top: 20px;
+            top: 20vh;
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
             max-height: 25vh;
             z-index: 100;
+            animation: oscillatev 3s ease-in-out infinite; /* Add this line */
+
         }
+    .vibe-coaching-2 {
+            position: fixed;
+            top: 20vh;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            max-height: 25vh;
+            z-index: 100;
+            animation-delay: 1s;
+        animation: oscillatev 3s ease-in-out infinite; /* Add this line */
+
+        }
+
 
         /* Selfie and facetext - center */
         .center-images {
@@ -70,7 +85,7 @@
             transform: translateX(-50%);
             z-index: 3;
             max-height: 20vh;
-            max-width: 400px;
+            max-width: 300px;
         }
 
         .lnsy img {
@@ -93,6 +108,13 @@
     25% { transform: translate(9px, -3px); }
     50% { transform: translate(-1px, 9px); }
     75% { transform: translate(3px, 1px); }
+}
+
+@keyframes oscillatev {
+    0%, 100% { transform: translate(-50%, -50%); }
+    25% { transform: translate(-50.5%, -50.1%); }
+    50% { transform: translate(-49.5%, -49.7%); }
+    75% { transform: translate(-50.2%, -50.4%); }
 }
 
 
@@ -200,6 +222,8 @@
         <img src="background-2.png" alt="Background 2" class="bg-image">
     </div>
     
+    <img src="vibe-coaching-2.png" alt="Vibe Coaching" class="vibe-coaching-2">
+
     <img src="vibe-coaching.png" alt="Vibe Coaching" class="vibe-coaching">
     
     <div class="center-images">
