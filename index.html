@@ -1,102 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{COMPANY_PURPOSE}}">
-  <meta name="keywords" content="{{COMPANY_NAME}}, {{COMPANY_PURPOSE}}">
-  <meta property="og:title" content="{{COMPANY_NAME}}">
-  <meta property="og:description" content="{{COMPANY_PURPOSE}}">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{COMPANY_NAME}}">
-  <meta name="twitter:description" content="{{COMPANY_PURPOSE}}">
-  <title>{{PAGE_TITLE}}</title>
-  {{ANALYTICS_SCRIPT}}
-  <link rel="stylesheet" href="/styles/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coaching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /* Background images - full width, with turbulence */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+        }
+
+        .bg-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Vibe coaching - top center */
+        .vibe-coaching {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            max-height: 25vh;
+            z-index: 100;
+        }
+
+        /* Selfie and facetext - center */
+        .center-images {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+
+        /* LNSY - bottom center */
+        .lnsy {
+            position: fixed;
+            left: 50%;
+            top: 70vh;
+            width: 90vw;
+            transform: translateX(-50%);
+            z-index: 3;
+            max-height: 20vh;
+            max-width: 400px;
+        }
+
+        .lnsy img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform:translate(0,0);
+                animation: oscillate 3s ease-in-out infinite; /* Add this line */
+
+        }
+
+        
+        
+        .lnsy img:nth-child(1) { animation-delay: 0s; }
+.lnsy img:nth-child(2) { animation-delay: 1s; }
+.lnsy img:nth-child(3) { animation-delay: 2s; }
+
+@keyframes oscillate {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(9px, -3px); }
+    50% { transform: translate(-1px, 9px); }
+    75% { transform: translate(3px, 1px); }
+}
+
+
+        /* Pegasus - animated */
+        .pegasus {
+            position: fixed;
+            width: 120px;
+            height: auto;
+            z-index: 4;
+            transition: transform 0.3s ease;
+        }
+
+            .selfie, .facetext {
+                height: 60vh;
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%)
+            }
+
+            .facetext {
+                filter: url(#turbulence);
+            }
+
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .center-images {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+
+            
+            .lnsy {
+                max-height: 15vh;
+                bottom: 2vh;
+            }
+            
+            .pegasus {
+                width: 90px;
+            }
+        }
+
+        /* Noise effect styling */
+        .wrap {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9001;
+        }
+
+        .shape {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+
+        .noisy {
+            background: radial-gradient(circle, #ff6b6b, #4ecdc4);
+            filter: url(#noise);
+        }
+
+        .gradient {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            mix-blend-mode: multiply;
+        }
+
+        .wrap p {
+            position: absolute;
+            top: 120px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="header-content">
-        <div class="logo">{{COMPANY_NAME}}</div>
-        <nav class="nav">
-          <!-- Add navigation links here if needed -->
-        </nav>
-      </div>
+    <svg width="0" height="0" style="position: absolute;">
+        <filter id="turbulence">
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="turbulence" seed="5">
+                <animate attributeName="baseFrequency" values="0.02;0.05;0.02" dur="40s" repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="5"/>
+        </filter>
+        <filter id="bgTurbulence">
+            <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="15" result="bgTurbulence" seed="10">
+                <animate attributeName="baseFrequency" values="0.01;0.03;0.01" dur="30s" repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="bgTurbulence" scale="5"/>
+        </filter>
+        <filter id="noise">
+            <feOffset in="SourceGraphic" dx="-8" dy="-8" result="offset" />
+            <feGaussianBlur in="offset" stdDeviation="64" result="blur" />
+            <feTurbulence result="waves" type="turbulence" baseFrequency="0.735 0.771" numOctaves="1" seed="256"></feTurbulence>
+            <feDisplacementMap in="blur" in2="waves" scale="320" xChannelSelector="R" yChannelSelector="B" result="ripples"></feDisplacementMap>
+            <feComposite in="waves" in2="ripples" operator="arithmetic" k1="1" k2="0" k3="1" k4="0"></feComposite>
+        </filter>
+    </svg>
+    
+    <div class="background">
+        <img src="background.png" alt="Background 1" class="bg-image">
+        <img src="background-2.png" alt="Background 2" class="bg-image">
     </div>
-  </header>
-
-  <section class="hero">
-    <div class="hero-background">
+    
+    <img src="vibe-coaching.png" alt="Vibe Coaching" class="vibe-coaching">
+    
+    <div class="center-images">
+        <img src="selfie.png" alt="Selfie" class="selfie">
+        <img src="face-text.png" alt="Face Text" class="facetext">
     </div>
-      <div class="container">
-        <div class="hero-content">
-          {{HERO_CONTENT}}
-        </div>
-      </div>
-  </section>
+    
+    <a href="https://calendly.com/lindsey-mysse">
+    <div class="lnsy">
+        <img src="click-me-4.svg" />
 
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-content">
-        {{SECTION1_CONTENT}}
-      </div>
-      <div class="feature-image">
-        <img src="/assets/images/feature-image-1.svg" alt="Aesthetic Code Mastery">
-      </div>
-    </div>
-  </section>
+        <img src="click-me-3.svg" />
+        <img src="click-me-2.svg" />
+        <img src="click-me-1.svg" />
 
-  <section class="feature-section reverse">
-    <div class="container">
-      <div class="feature-content">
-        {{SECTION2_CONTENT}}
-      </div>
-      <div class="feature-image">
-        <img src="/assets/images/feature-image-2.svg" alt="Retro-Futuristic Vibes">
-      </div>
-    </div>
-  </section>
+    </div></a>
+    
+    <img src="pegasus.png" alt="Pegasus" class="pegasus">
+    
 
-  <section class="feature-section">
-    <div class="container">
-      <div class="feature-content">
-        {{SECTION3_CONTENT}}
-      </div>
-      <div class="feature-image">
-        <img src="/assets/images/feature-image-3.svg" alt="Creative Collective">
-      </div>
-    </div>
-  </section>
+    <script>
+        const pegasus = document.querySelector('.pegasus');
+        let x = Math.random() * (window.innerWidth - 120);
+        let y = Math.random() * (window.innerHeight - 120);
+        let vx = (Math.random() - 0.5) * 4;
+        let vy = (Math.random() - 0.5) * 4;
 
-  <section class="features-grid">
-    <div class="container">
-      <div class="grid-boxes">
-        {{FEATURES_GRID_CONTENT}}
-      </div>
-    </div>
-  </section>
-
-  <section class="contact">
-    <div class="container">
-      <div class="contact-content">
-        {{CONTACT_CONTENT}}
-        {{MAILING_LIST}}
-        {{CALENDLY_BUTTON}}
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; {{YEAR}} {{COMPANY_NAME}}. All rights reserved.</p>
-      {{FOOTER_LOCATION}}
-    </div>
-  </footer>
-
-  {{COOKIE_BANNER}}
-
-  <script type="module" src="/src/main.js"></script>
+        function bounce() {
+            x += vx;
+            y += vy;
+            
+            if (x <= 0 || x >= window.innerWidth - 120) {
+                vx = (Math.random() - 0.5) * 6;
+                vy = (Math.random() - 0.5) * 6;
+            }
+            if (y <= 0 || y >= window.innerHeight - 120) {
+                vx = (Math.random() - 0.5) * 6;
+                vy = (Math.random() - 0.5) * 6;
+            }
+            
+            pegasus.style.left = x + 'px';
+            pegasus.style.top = y + 'px';
+            pegasus.style.transform = vx > 0 ? 'scaleX(-1)' : 'scaleX(1)';
+            pegasus.style.zIndex = Math.floor(y / 100) + 4;
+            
+            requestAnimationFrame(bounce);
+        }
+        
+        bounce();
+        
+        // B&W toggle functionality
+        let isBlackWhite = false;
+        document.addEventListener('click', function() {
+            if (isBlackWhite) {
+                document.body.style.filter = '';
+                isBlackWhite = false;
+            } else {
+                document.body.style.filter = 'grayscale(100%)';
+                isBlackWhite = true;
+            }
+        });
+    </script>
 </body>
 </html>
